@@ -3,7 +3,7 @@ name: Build and deploy ASP.Net Core app to Azure Web App - ByteEngageERP
 on:
   push:
     branches:
-      - master
+      - main
 
 env:
   AZURE_WEBAPP_NAME: 'byteengageapi1'    # Set this to your application's name
