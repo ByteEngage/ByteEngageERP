@@ -1,0 +1,6 @@
+@ByteEngageERP_HostAddress = http://localhost:5148
+
+GET {{ByteEngageERP_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
