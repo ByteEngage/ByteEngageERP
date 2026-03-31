@@ -15,6 +15,23 @@ if (app.Environment.IsDevelopment())
     app.UseSwagger();
     app.UseSwaggerUI();
 }
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy("AllowFrontend",
+        policy =>
+        {
+            policy.WithOrigins(
+                    "https://byteengage.github.io",   // optional (old)
+                    "https://erp.byteengage.com",     // ✅ your custom domain
+                    "http://byteengage.github.io",   // optional (old)
+                    "http://erp.byteengage.com"      // ✅ your custom domain
+                )
+                .AllowAnyHeader()
+                .AllowAnyMethod();
+        });
+});
+
+app.UseCors("AllowFrontend");
 
 app.UseHttpsRedirection();
 
