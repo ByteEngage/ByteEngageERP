@@ -2,7 +2,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace ByteEngageERP.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("[controller]")]
     [ApiController]
     public class EmployeeController : ControllerBase
     {
