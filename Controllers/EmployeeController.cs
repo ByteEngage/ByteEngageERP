@@ -6,7 +6,7 @@ namespace ByteEngageERP.Controllers
     [ApiController]
     public class EmployeeController : ControllerBase
     {
-        private static List<Employee> employees = new List<Employee>();
+        private static readonly List<Employee> employees = new List<Employee>();
 
         // Static constructor to generate data
         static EmployeeController()
@@ -75,10 +75,10 @@ namespace ByteEngageERP.Controllers
     public class Employee
     {
         public int Id { get; set; }
-        public string Name { get; set; }
-        public string Email { get; set; }
-        public string Department { get; set; }
+        public string? Name { get; set; }
+        public string? Email { get; set; }
+        public string? Department { get; set; }
         public int Salary { get; set; }
-        public string City { get; set; }
+        public string? City { get; set; }
     }
 }
