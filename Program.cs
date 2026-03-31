@@ -14,7 +14,7 @@ builder.Services.AddCors(options =>
             policy.WithOrigins(
                     "https://byteengage.github.io",
                     "https://erp.byteengage.com",
-                    "http://localhost:5173/"
+                    "http://localhost:5173"
                 )
                 .AllowAnyHeader()
                 .AllowAnyMethod();
