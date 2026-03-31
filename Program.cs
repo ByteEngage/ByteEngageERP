@@ -1,40 +1,39 @@
 var builder = WebApplication.CreateBuilder(args);
 
-// Add services to the container.
-
+// Add services
 builder.Services.AddControllers();
-// Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
-var app = builder.Build();
-
-// Configure the HTTP request pipeline.
-if (app.Environment.IsDevelopment())
-{
-    app.UseSwagger();
-    app.UseSwaggerUI();
-}
+// ✅ ADD CORS HERE (BEFORE BUILD)
 builder.Services.AddCors(options =>
 {
     options.AddPolicy("AllowFrontend",
         policy =>
         {
             policy.WithOrigins(
-                    "https://byteengage.github.io",   // optional (old)
-                    "https://erp.byteengage.com",     // ✅ your custom domain
-                    "http://byteengage.github.io",   // optional (old)
-                    "http://erp.byteengage.com"      // ✅ your custom domain
+                    "https://byteengage.github.io",
+                    "https://erp.byteengage.com",
+                    "http://byteengage.github.io",
+                    "http://erp.byteengage.com"
                 )
                 .AllowAnyHeader()
                 .AllowAnyMethod();
         });
 });
 
+var app = builder.Build();
+
+// Middleware
+if (app.Environment.IsDevelopment())
+{
+    app.UseSwagger();
+    app.UseSwaggerUI();
+}
+
 app.UseCors("AllowFrontend");
 
 app.UseHttpsRedirection();
-
 app.UseAuthorization();
 
 app.MapControllers();
