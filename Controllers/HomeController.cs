@@ -6,10 +6,10 @@ namespace ByteEngageERP.Controllers;
 [Route("[controller]")]
 public class HomeController : ControllerBase
 {
-    
+    // GET
     [HttpGet]
-    public string Get()
+    public string Index()
     {
-        return "This Is Home Controller";
+        return "This IS Home Page";
     }
 }
