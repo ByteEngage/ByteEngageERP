@@ -1,8 +1,8 @@
 namespace ByteEngageERP.Models;
 
-public class RegisterDto
+public class AddUser
 {
     public string Username { get; set; }
     public string Password { get; set; }
-    public string Role { get; set; } = "User";
+    public int? AddedBy { get; set; }
 }

@@ -1,8 +1,10 @@
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace ByteEngageERP.Controllers
 {
     [Route("[controller]")]
+    [Authorize]
     [ApiController]
     public class EmployeeController : ControllerBase
     {

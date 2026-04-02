@@ -18,7 +18,10 @@ public class JwtService
         var claims = new[]
         {
             new Claim(ClaimTypes.Name, user.Username),
-            new Claim(ClaimTypes.Role, user.Role)
+            new Claim(ClaimTypes.Role, user.Role),
+            new Claim("TenantId", user.OrganizationId.ToString()),
+            new Claim("AddedBy", Convert.ToInt32(user.Id).ToString()),
+
         };
 
         var key = new SymmetricSecurityKey(

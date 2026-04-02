@@ -75,11 +75,9 @@ if (app.Environment.IsDevelopment())
 // ✅ CORS MUST BE HERE
 app.UseCors("AllowFrontend");
 
-app.UseHttpsRedirection();
+//app.UseHttpsRedirection();
 
 app.UseAuthentication();
 app.UseAuthorization();
-
 app.MapControllers();
-
 app.Run();
