@@ -22,32 +22,29 @@ namespace ByteEngageERP.Controllers
         [HttpPost("login")]
         public async Task<IActionResult> Login([FromBody] LoginDto dto)
         {
-            if (string.IsNullOrWhiteSpace(dto.Username) || string.IsNullOrWhiteSpace(dto.Password))
-                return BadRequest(new { message = "Username and Password required" });
+            if (dto == null || string.IsNullOrEmpty(dto.Username) || string.IsNullOrEmpty(dto.Password))
+                return BadRequest(new { message = "Invalid request" });
 
             var user = await _db.Users
-                .FirstOrDefaultAsync(u => u.Username == dto.Username.Trim());
+                .FirstOrDefaultAsync(u => u.Username == dto.Username);
 
-            if (user == null || string.IsNullOrEmpty(user.PasswordHash) ||
-                !BCrypt.Net.BCrypt.Verify(dto.Password, user.PasswordHash))
-            {
+            if (user == null)
+                return Unauthorized(new { message = "User not found" });
+
+            if (string.IsNullOrEmpty(user.PasswordHash))
+                return StatusCode(500, new { message = "User password not set properly" });
+
+            if (!BCrypt.Net.BCrypt.Verify(dto.Password, user.PasswordHash))
                 return Unauthorized(new { message = "Invalid credentials" });
-            }
 
             var token = _jwt.GenerateToken(user);
 
             return Ok(new
             {
                 token,
-                expiresIn = 3600,
-                user = new
-                {
-                    user.Username,
-                    user.Role
-                }
+                user = new { user.Username, user.Role }
             });
         }
-
         // 🆕 REGISTER
         [HttpPost("register")]
         public async Task<IActionResult> Register([FromBody] RegisterDto dto)
