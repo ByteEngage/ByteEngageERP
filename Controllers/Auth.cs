@@ -10,9 +10,9 @@ namespace ByteEngageERP.Controllers
     public class AuthController : ControllerBase
     {
         private readonly AppDbContext _db;
-        private readonly JwtService _jwt;
+        private readonly Services.JwtService _jwt;
 
-        public AuthController(AppDbContext db, JwtService jwt)
+        public AuthController(AppDbContext db, Services.JwtService jwt)
         {
             _db = db;
             _jwt = jwt;

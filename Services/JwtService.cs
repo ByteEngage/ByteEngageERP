@@ -3,7 +3,7 @@ using System.Security.Claims;
 using System.Text;
 using ByteEngageERP.Models;
 using Microsoft.IdentityModel.Tokens;
-
+namespace ByteEngageERP.Services;
 public class JwtService
 {
     private readonly IConfiguration _config;
